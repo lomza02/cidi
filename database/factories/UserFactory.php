@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -11,6 +12,8 @@ use Illuminate\Support\Str;
  */
 class UserFactory extends Factory
 {
+
+    use Authenticatable;
     /**
      * The current password being used by the factory.
      */
