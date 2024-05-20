@@ -12,6 +12,7 @@ jobs:
   tests:
     name: Run tests
     runs-on: ubuntu-latest
+    environment: master
     steps:
       - uses: actions/checkout@v2
 
@@ -44,10 +45,10 @@ jobs:
 
     services:
       mysql:
-        image: mysql:5.7
+        image: mysql:8.0
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: cicd_testing
+          MYSQL_DATABASE: ${{ secrets.DB_DATABASE }}
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
