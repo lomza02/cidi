@@ -40,8 +40,6 @@ jobs:
       - name: Run test suite
         run: |
           php artisan test
-        env:
-          DB_DATABASE: cicd_testing
 
     services:
       mysql:
