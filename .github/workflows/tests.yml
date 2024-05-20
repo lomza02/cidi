@@ -1,0 +1,33 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install PHP
+        uses: shivamathur/setup-php@v2
+        with:
+          php-version: 8.2
+
+      - name: Copy .env file
+        run: |
+          cp. env.ci .env
+
+      - name: Run composer
+        run: |
+          composer install --no-interaction
+
+      - name: Run test suite
+        run: |
+          php artisan test
