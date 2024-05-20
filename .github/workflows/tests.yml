@@ -12,7 +12,6 @@ jobs:
   tests:
     name: Run tests
     runs-on: ubuntu-latest
-    environment: master
     steps:
       - uses: actions/checkout@v2
 
@@ -64,8 +63,8 @@ jobs:
         image: mongo
         env:
           MONGO_INITDB_ROOT_USERNAME: root
-          MONGO_INITDB_ROOT_PASSWORD: ${{ secrets.MONGO_INITDB_ROOT_PASSWORD }},
-          MONGO_INITDB_DATABASE: mysql-platform
+          MONGO_INITDB_ROOT_PASSWORD: example,
+          MONGO_INITDB_DATABASE: mongo-platform
           ports: 27017:27017
           options: >-
                 --health-cmd mongo
