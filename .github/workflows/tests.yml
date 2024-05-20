@@ -15,16 +15,24 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install PHP
+      - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
 
       - name: Copy .env file
         run: |
           cp .env.ci .env
 
-      - name: Run composer
+      - name: Install dependencies
         run: |
           composer install --no-interaction
 
